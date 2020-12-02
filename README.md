@@ -24,7 +24,7 @@ PASSWORD: 第一个账户密码,第二个账户密码
 
 **注意：** 为了实现某个链接/帐户访问出错时不中断程序继续尝试下一个，GitHub Actions 的状态将永远是“通过”（显示绿色的✔），请自行检查 GitHub Actions 日志 `Auto renew` 项的输出确定程序执行情况。
 
-## 其他说明
+## 其他说明 
 
 1、若使用Github Actions运行本脚本，将会公开你的账号中VPS个数以及VPS的ID（**Contract**）
 
