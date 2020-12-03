@@ -35,7 +35,7 @@ jobs:
         run: python main.py
       
       - name: 'Random upload to avoid Github Workflow suspend'
-        run: curl -o bing.html "https://www.bing.com/?FORM=BEHPTB&ensearch=1"
+        run: curl -o bing.html "https://www.bing.com"
       
       - name: Commit Files
         id: commit
@@ -50,6 +50,7 @@ jobs:
       # 此处的 ${{ secrets.GITHUB_TOKEN }} 是 Actions 自有变量，不用管
       - name: GitHub Push
         if: steps.commit.output.status != 'success'
-        uses: ad-m/github-push-action@v0.5.0
+        uses: ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
