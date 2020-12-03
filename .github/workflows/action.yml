@@ -46,8 +46,6 @@ jobs:
           git diff --quiet && git diff --staged --quiet || git commit -am 'run'
           echo ::set-output name=status::success
            
-          
-      # 此处的 ${{ secrets.GITHUB_TOKEN }} 是 Actions 自有变量，不用管
       - name: GitHub Push
         if: steps.commit.output.status != 'success'
         uses: ad-m/github-push-action@v0.6.0
