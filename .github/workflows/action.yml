@@ -7,10 +7,13 @@ on:
       - main
   schedule:
     - cron: '50 0 * * *'
+  watch:
+    types: started
 
 jobs:
   auto_renew:
     runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
     steps:
       - name: 'Checkout codes'
         uses: actions/checkout@v2
