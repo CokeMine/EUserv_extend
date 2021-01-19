@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 
 USERNAME = os.environ["USERNAME"]
 PASSWORD = os.environ["PASSWORD"]
+TOKEN = os.environ.get("TOKEN", "")
 PROXIES = {
     "http": "http://127.0.0.1:10809",
     "https": "http://127.0.0.1:10809"
@@ -108,14 +109,23 @@ def check(sess_id, session):
         print("ALL Work Done! Enjoy")
 
 
+def notify_user(token: str, msg: str):
+    if not token:
+        return
+
+    rs = requests.post(url="https://sre24.com/api/v1/push", json=dict(token=token, msg=msg)).json()
+    assert int(rs["code"] / 100) == 2, rs
+
+
 if __name__ == "__main__":
     if not USERNAME or not PASSWORD:
         print("你没有添加任何账户")
+        notify_user(token=TOKEN, msg="你没有添加任何账户")
         exit(1)
     user_list = USERNAME.strip().split()
     passwd_list = PASSWORD.strip().split()
     if len(user_list) != len(passwd_list):
-        print("The number of usernames and passwords do not match!")
+        notify_user(token=TOKEN, msg="The number of usernames and passwords do not match!")
         exit(1)
     for i in range(len(user_list)):
         print('*' * 30)
@@ -123,6 +133,7 @@ if __name__ == "__main__":
         sessid, s = login(user_list[i], passwd_list[i])
         if sessid == '-1':
             print("第 %d 个账号登陆失败，请检查登录信息" % (i + 1))
+            notify_user(token=TOKEN, msg="第 %d 个账号登陆失败，请检查登录信息" % (i + 1))
             continue
         SERVERS = get_servers(sessid, s)
         print("检测到第 {} 个账号有 {} 台VPS，正在尝试续期".format(i + 1, len(SERVERS)))
@@ -130,8 +141,10 @@ if __name__ == "__main__":
             if v:
                 if not renew(sessid, s, passwd_list[i], k):
                     print("ServerID: %s Renew Error!" % k)
+                    notify_user(token=TOKEN, msg="ServerID: %s Renew Error!" % k)
                 else:
                     print("ServerID: %s has been successfully renewed!" % k)
+                    notify_user(token=TOKEN, msg="ServerID: %s has been successfully renewed!" % k)
             else:
                 print("ServerID: %s does not need to be renewed" % k)
         time.sleep(15)

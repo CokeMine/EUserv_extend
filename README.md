@@ -5,6 +5,8 @@
 
 自动获取账号内所有的VPS项目，并检测是否需要续期，需要续期会自动续期。
 
+(可选)续期结果通过sre24免费推送微信提醒。
+
 请详细浏览下面的使用说明。
 
 ## 使用说明
@@ -16,6 +18,7 @@
 ```
 USERNAME: 你的EUserv账户邮箱或Customer ID 第二个账户
 PASSWORD: 第一个账户密码 第二个账户密码
+TOKEN: (可选)微信扫码免费登录 https://sre24.com 在「设置」页面复制值
 ```
 
 2、设置好环境变量后点击你的仓库上方的 Actions 选项，点击 `I understand...` 按钮确认在 Fork 的仓库上启用 GitHub Actions 。
