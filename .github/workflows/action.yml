@@ -26,3 +26,4 @@ jobs:
           PASSWORD: ${{ secrets.PASSWORD }}
           TOKEN: ${{ secrets.TOKEN }}
         run: python main.py
+
