@@ -111,8 +111,8 @@ def check(sess_id: str, session: requests.session):
 
 
 def notify_user(token: str, msg: str):
-    rs = requests.post(url="https://sre24.com/api/v1/push", json=dict(token=token, msg=msg)).json()
-    assert int(rs["code"] / 100) == 2, rs
+    rs = requests.post(url="https://sctapi.ftqq.com/"+token+".send",data={"title":"euserv每月续期", "desp":msg}).json()
+    assert rs["code"]==0, rs
 
 
 if __name__ == "__main__":
