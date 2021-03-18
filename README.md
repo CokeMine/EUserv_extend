@@ -1,4 +1,4 @@
-# EUserv_exten
+# EUserv_ex
 A simple Python Script which can help you renew your free EUserv IPv6 VPS.
 
 This Script can check the VPS amount in your account automatically and renew the VPS if it can be renewed.
