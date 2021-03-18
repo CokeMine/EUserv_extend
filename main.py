@@ -129,7 +129,7 @@ if __name__ == "__main__":
         exit(1)
     for i in range(len(user_list)):
         print('*' * 30)
-        print("正在续费第 %d 个账号" % (i + 1))
+        print("正在1续费第 %d 个账号" % (i + 1))
         sessid, s = login(user_list[i], passwd_list[i])
         if sessid == '-1':
             print("第 %d 个账号登陆失败，请检查登录信息" % (i + 1))
