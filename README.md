@@ -9,7 +9,7 @@ All in this repo is for learning only.
 
 If you have any disputes about this repo, please contact me or send an Issue.
 
-Really thanks EUserv provide us free IPv6 VPS for learning.
+
 
 ## How to Use
 
